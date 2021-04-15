@@ -1,12 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import './App.css';
 import DatePicker from 'react-datepicker';
-import Slider, { SliderTooltip, Handle } from 'rc-slider';
-import Button from './components/Button';
+import Button from './components/button/Button';
+import RangeSlider from './components/slider/Slider';
 import 'react-datepicker/dist/react-datepicker.css';
-import 'rc-slider/assets/index.css';
 
 // TODOs
 // 1. Remove all inline styles
@@ -86,43 +83,22 @@ const App = () => {
     return 0;
   };
 
-  const handle = (props) => {
-    const { value, dragging, index, ...restProps } = props;
-    return (
-      <SliderTooltip
-        prefixCls="rc-slider-tooltip"
-        overlay={`$${value}`}
-        placement="top"
-        key={index}
-        visible
-      >
-        <Handle value={value} {...restProps} />
-      </SliderTooltip>
-    );
-  };
-
   return (
     <div className="app">
       <div className="app-content">
-        <div htmlFor="registration-cost">
-          <span className="app-label">How much is your regristration?</span>
-          <Slider
-            min={0}
-            max={1600}
-            step={0.01}
-            defaultValue={DEFAULT_REGISTRATION_AMOUNT}
-            handle={handle}
-            onChange={(value) => setAmount(value)}
-          />
-        </div>
-        <h2 className="app-label">How long is this regristration?</h2>
+        <h3>How much is your regristration?</h3>
+        <RangeSlider
+          defaultValue={DEFAULT_REGISTRATION_AMOUNT}
+          onChange={(value) => setAmount(value)}
+        />
+        <h4>How long is this regristration?</h4>
         <Button
           data={regDuration}
           handleOnClick={(event) => setTerm(event.currentTarget.value)}
           defaultValue={term}
         />
         <div>
-          <span className="app-label">When is it due?</span>
+          <h4>When is it due?</h4>
           <DatePicker
             selected={dueDate}
             onChange={(date) => setDueDate(date)}

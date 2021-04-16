@@ -18,13 +18,14 @@ const handle = (props) => {
   );
 };
 
-const RangeSlider = ({ defaultValue }) => (
+const RangeSlider = ({ defaultValue, onChange }) => (
   <Slider
     min={0}
     max={1600}
     step={0.01}
     defaultValue={defaultValue}
     handle={handle}
+    onChange={onChange}
   />
 );
 

@@ -68,19 +68,30 @@ const App = () => {
    * (i.e. month, fortnight, week)
    */
   const renderRegistrationCost = () => {
+    console.log({ amount });
+    console.log({ paymentFrequency });
+    console.log(calculateWeekly());
+
     if (paymentFrequency === 'monthly') {
+      if (calculateMonthlyDiff() <= 0) {
+        return amount;
+      }
       return amount / calculateMonthlyDiff() + ADMIN_FEE;
     }
 
     if (paymentFrequency === 'fortnightly') {
+      if (calculateFornight() <= 0) {
+        return amount;
+      }
       return amount / calculateFornight() + ADMIN_FEE;
     }
 
     if (paymentFrequency === 'weekly') {
+      if (calculateWeekly() <= 0) {
+        return amount;
+      }
       return amount / calculateWeekly() + ADMIN_FEE;
     }
-
-    return 0;
   };
 
   return (

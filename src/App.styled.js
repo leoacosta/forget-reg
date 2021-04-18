@@ -11,8 +11,9 @@ export const StyledApp = styled.main`
     border-radius: 60px; /* move to constant */
     background-color: #173146;
     color: white;
-    font-family: sans-serif;
-    font-size: 1rem;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
     width: 100%;
     padding: 1.25rem 2rem;
   }

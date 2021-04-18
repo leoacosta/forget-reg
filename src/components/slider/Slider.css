@@ -1,25 +1,26 @@
-.rc-slider .rc-slider-rail,
-.rc-slider .rc-slider-track {
+.rc-slider-rail,
+.rc-slider-track {
   height: 10px;
 }
 
-.rc-slider .rc-slider-rail {
+.rc-slider-rail {
   background-color: #173146; /* move to constant */
 }
 
-.rc-slider-tooltip-content .rc-slider-tooltip-inner {
+.rc-slider-tooltip-inner {
+  font-size: 1.25rem;
+  font-weight: 600;
   padding: 0.5rem 0.75rem;
   min-width: auto;
   height: 100%;
-  font-size: 16px;
   line-height: 1;
   color: #fff;
-  border-radius: 2rem; /* move to constan t */
+  border-radius: 2rem; /* move to constant */
   box-shadow: initial;
   cursor: grab;
 }
 
-.rc-slider-tooltip-arrow.rc-slider-tooltip-arrow.rc-slider-tooltip-arrow {
+.rc-slider-tooltip-arrow.rc-slider-tooltip-arrow {
   bottom: 3px;
   left: 50%;
   margin-left: -8px;
@@ -27,12 +28,12 @@
   border-top-color: #4baef7;
 }
 
-.rc-slider-tooltip-content .rc-slider-tooltip-inner,
-.rc-slider .rc-slider-track {
+.rc-slider-tooltip-inner,
+.rc-slider-track {
   background-color: #4baef7;
 }
 
-.rc-slider .rc-slider-handle {
+.rc-slider-handle {
   border: 4px solid #4baef7;
   height: 28px;
   margin-top: -8px;

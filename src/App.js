@@ -103,7 +103,9 @@ const App = () => {
     <StyledApp>
       <StyledCalculator>
         <StyledRow>
-          <StyledHeading3>How much is your regristration?</StyledHeading3>
+          <StyledHeading3 style={{ marginBottom: 70 }}>
+            How much is your regristration?
+          </StyledHeading3>
           <RangeSlider
             defaultValue={DEFAULT_REGISTRATION_AMOUNT}
             onChange={(value) => setAmount(value)}

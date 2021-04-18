@@ -26,6 +26,21 @@ export const StyledApp = styled.main`
     display: block;
   }
 
+  .react-datepicker__triangle {
+    left: 50% !important;
+  }
+
+  .react-datepicker__close-icon::after {
+    align-items: center;
+    background-color: hsl(205deg 91% 63% / 65%);
+    display: flex;
+    font-size: 1.25rem;
+    height: 26px;
+    justify-content: center;
+    width: 26px;
+    margin-right: 0.625rem;
+  }
+
   input::-webkit-input-placeholder {
     color: white;
   }
@@ -48,7 +63,7 @@ export const StyledCalculator = styled.div`
 export const StyledResult = styled.div`
   border: 1px solid #314453;
   border-radius: 10rem;
-  padding: 1rem 1rem 1rem 2rem;
+  padding: 1rem 1rem 1rem 1.625rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,6 +86,7 @@ export const StyledResult = styled.div`
 
 export const StyledHeading3 = styled.h3`
   font-size: 1.5rem;
+  letter-spacing: 1px;
   margin-bottom: 1.25rem;
 `;
 

@@ -127,6 +127,7 @@ const App = () => {
             placeholderText="Please select"
             className="date-picker"
             dateFormat="MMMM d, yyyy"
+            isClearable
           />
         </StyledRow>
         <StyledRow>

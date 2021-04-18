@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledButtonGroup = styled.div`
-  margin: 2rem 0;
   background-color: #173146;
   border-radius: 1.875rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const StyledButton = styled.button`
@@ -13,7 +14,9 @@ export const StyledButton = styled.button`
   color: #fff;
   cursor: pointer;
   font-size: 1.25rem;
+  font-family: 'Poppins', sans-serif;
   padding: 1rem 2rem;
+  text-transform: capitalize;
 
   &:nth-child(2) {
     position: relative;
@@ -43,6 +46,7 @@ export const StyledButton = styled.button`
 
   &.is-active {
     background-color: #4baef7;
+    font-weight: 600;
     position: relative;
     z-index: 1;
   }

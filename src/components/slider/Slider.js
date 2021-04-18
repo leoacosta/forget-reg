@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import Slider, { SliderTooltip, Handle } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import './Slider.css';
 
 const handle = (props) => {
   const { value, dragging, index, ...restProps } = props;

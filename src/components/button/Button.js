@@ -8,7 +8,7 @@ const Button = ({ data, handleOnClick, defaultValue }) => (
       return (
         <StyledButton
           key={index}
-          className={defaultValue === label ? `is-active` : ''}
+          className={defaultValue === label ? `is-active` : ``}
           type="button"
           value={label}
           defaultValue={defaultValue}

@@ -1,6 +1,13 @@
 import { useState } from 'react';
-import './App.css';
 import DatePicker from 'react-datepicker';
+import {
+  StyledApp,
+  StyledRow,
+  StyledCalculator,
+  StyledHeading3,
+  StyledLink,
+  StyledResult,
+} from './App.styled';
 import Button from './components/button/Button';
 import RangeSlider from './components/slider/Slider';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -11,13 +18,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 // 3. Move constants to constants.js file
 // 4. Validate user to enter a due date of >= 3 months ELSE invalid
 
-const regDuration = [
+const REGISTRATION_TERM = [
   { label: '3 months', value: 3 },
   { label: '6 months', value: 6 },
   { label: '12 months', value: 12 },
 ];
 
-const frequencyData = [
+const REGISTRATION_FREQUENCY = [
   { label: 'weekly', suffix: '/pw' },
   { label: 'fortnightly', suffix: '/pf' },
   { label: 'monthly', suffix: '/pm' },
@@ -26,8 +33,8 @@ const frequencyData = [
 // Default values
 
 const DEFAULT_REGISTRATION_AMOUNT = 850;
-const DEFAULT_REGISTRATION_DURATION = '12 months';
-const DEFAULT_PAYMENT_FREQUENCY = 'weekly';
+const DEFAULT_REGISTRATION_DURATION = REGISTRATION_TERM[2].label;
+const DEFAULT_PAYMENT_FREQUENCY = REGISTRATION_FREQUENCY[0].label;
 const ADMIN_FEE = 5;
 
 const App = () => {
@@ -37,7 +44,9 @@ const App = () => {
   const [paymentFrequency, setPaymentFrequency] = useState(
     DEFAULT_PAYMENT_FREQUENCY
   );
-  const [paymentSuffix, setPaymentSuffix] = useState(frequencyData[0].suffix);
+  const [paymentSuffix, setPaymentSuffix] = useState(
+    REGISTRATION_FREQUENCY[0].suffix
+  );
 
   /**
    * TODO
@@ -68,48 +77,48 @@ const App = () => {
    * (i.e. month, fortnight, week)
    */
   const renderRegistrationCost = () => {
-    console.log({ amount });
-    console.log({ paymentFrequency });
-    console.log(calculateWeekly());
-
     if (paymentFrequency === 'monthly') {
       if (calculateMonthlyDiff() <= 0) {
-        return amount;
+        return amount + ADMIN_FEE;
       }
       return amount / calculateMonthlyDiff() + ADMIN_FEE;
     }
 
     if (paymentFrequency === 'fortnightly') {
       if (calculateFornight() <= 0) {
-        return amount;
+        return amount + ADMIN_FEE;
       }
       return amount / calculateFornight() + ADMIN_FEE;
     }
 
     if (paymentFrequency === 'weekly') {
       if (calculateWeekly() <= 0) {
-        return amount;
+        return amount + ADMIN_FEE;
       }
       return amount / calculateWeekly() + ADMIN_FEE;
     }
   };
 
   return (
-    <div className="app">
-      <div className="app-content">
-        <h3>How much is your regristration?</h3>
-        <RangeSlider
-          defaultValue={DEFAULT_REGISTRATION_AMOUNT}
-          onChange={(value) => setAmount(value)}
-        />
-        <h4>How long is this regristration?</h4>
-        <Button
-          data={regDuration}
-          handleOnClick={(event) => setTerm(event.currentTarget.value)}
-          defaultValue={term}
-        />
-        <div>
-          <h4>When is it due?</h4>
+    <StyledApp>
+      <StyledCalculator>
+        <StyledRow>
+          <StyledHeading3>How much is your regristration?</StyledHeading3>
+          <RangeSlider
+            defaultValue={DEFAULT_REGISTRATION_AMOUNT}
+            onChange={(value) => setAmount(value)}
+          />
+        </StyledRow>
+        <StyledRow>
+          <StyledHeading3>How long is this regristration?</StyledHeading3>
+          <Button
+            data={REGISTRATION_TERM}
+            handleOnClick={(event) => setTerm(event.currentTarget.value)}
+            defaultValue={term}
+          />
+        </StyledRow>
+        <StyledRow>
+          <StyledHeading3>When is it due?</StyledHeading3>
           <DatePicker
             selected={dueDate}
             onChange={(date) => setDueDate(date)}
@@ -117,35 +126,31 @@ const App = () => {
             className="date-picker"
             dateFormat="MMMM d, yyyy"
           />
-        </div>
-        <h2 className="app-label">How often would you pay?</h2>
-        <Button
-          data={frequencyData}
-          handleOnClick={handlePaymentFrequencyOnClick}
-          defaultValue={paymentFrequency}
-        />
-        <p style={{ marginTop: 0 }}>
-          If you join today your registration will cost you
-        </p>
-        <div
-          className="result"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <h2 className="result-title">
-            $
-            {dueDate
-              ? `${renderRegistrationCost().toFixed(2)}`
-              : (0).toFixed(2)}
-            <span style={{ fontSize: '1rem' }}>{paymentSuffix}</span>
-          </h2>
-          <a href="#0">Apply Now</a>
-        </div>
-      </div>
-    </div>
+        </StyledRow>
+        <StyledRow>
+          <StyledHeading3>How often would you pay?</StyledHeading3>
+          <Button
+            data={REGISTRATION_FREQUENCY}
+            handleOnClick={handlePaymentFrequencyOnClick}
+            defaultValue={paymentFrequency}
+          />
+        </StyledRow>
+        <StyledRow>
+          <StyledHeading3>
+            If you join today your registration will cost you
+          </StyledHeading3>
+          <StyledResult>
+            <p>
+              {dueDate
+                ? `${renderRegistrationCost().toFixed(2)}`
+                : (0).toFixed(2)}
+              <span>{paymentSuffix}</span>
+            </p>
+            <StyledLink href="#0">Apply Now</StyledLink>
+          </StyledResult>
+        </StyledRow>
+      </StyledCalculator>
+    </StyledApp>
   );
 };
 

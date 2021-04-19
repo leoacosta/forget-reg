@@ -3,7 +3,7 @@ import { BREAKPOINT, COLOR } from './utils/constants';
 
 export const StyledApp = styled.main`
   height: 100vh;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   display: grid;
   justify-items: center;
   align-items: center;

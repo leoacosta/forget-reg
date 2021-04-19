@@ -12,31 +12,14 @@ import {
 import Button from './components/button/Button';
 import RangeSlider from './components/slider/Slider';
 import 'react-datepicker/dist/react-datepicker.css';
-
-// TODOs
-// 1. Remove all inline styles
-// 2. Remove outline in accessible way
-// 3. Move constants to constants.js file
-// 4. Validate user to enter a due date of >= 3 months ELSE invalid
-
-const REGISTRATION_TERM = [
-  { label: '3 months', value: 3 },
-  { label: '6 months', value: 6 },
-  { label: '12 months', value: 12 },
-];
-
-const REGISTRATION_FREQUENCY = [
-  { label: 'weekly', suffix: '/pw' },
-  { label: 'fortnightly', suffix: '/pf' },
-  { label: 'monthly', suffix: '/pm' },
-];
-
-// Default values
-
-const DEFAULT_REGISTRATION_AMOUNT = 850;
-const DEFAULT_REGISTRATION_DURATION = REGISTRATION_TERM[2].label;
-const DEFAULT_PAYMENT_FREQUENCY = REGISTRATION_FREQUENCY[0].label;
-const ADMIN_FEE = 5;
+import {
+  REGISTRATION_ADMIN_FEE,
+  REGISTRATION_TERM,
+  REGISTRATION_FREQUENCY,
+  DEFAULT_REGISTRATION_AMOUNT,
+  DEFAULT_REGISTRATION_DURATION,
+  DEFAULT_PAYMENT_FREQUENCY,
+} from './utils/constants';
 
 const App = () => {
   const [amount, setAmount] = useState(DEFAULT_REGISTRATION_AMOUNT);
@@ -49,10 +32,6 @@ const App = () => {
     REGISTRATION_FREQUENCY[0].suffix
   );
 
-  /**
-   * TODO
-   * 1. Add desc
-   */
   const handlePaymentFrequencyOnClick = (event, suffix) => {
     setPaymentSuffix(suffix);
     setPaymentFrequency(event.currentTarget.value);
@@ -80,23 +59,23 @@ const App = () => {
   const renderRegistrationCost = () => {
     if (paymentFrequency === 'monthly') {
       if (calculateMonthlyDiff() <= 0) {
-        return amount + ADMIN_FEE;
+        return amount + REGISTRATION_ADMIN_FEE;
       }
-      return amount / calculateMonthlyDiff() + ADMIN_FEE;
+      return amount / calculateMonthlyDiff() + REGISTRATION_ADMIN_FEE;
     }
 
     if (paymentFrequency === 'fortnightly') {
       if (calculateFornight() <= 0) {
-        return amount + ADMIN_FEE;
+        return amount + REGISTRATION_ADMIN_FEE;
       }
-      return amount / calculateFornight() + ADMIN_FEE;
+      return amount / calculateFornight() + REGISTRATION_ADMIN_FEE;
     }
 
     if (paymentFrequency === 'weekly') {
       if (calculateWeekly() <= 0) {
-        return amount + ADMIN_FEE;
+        return amount + REGISTRATION_ADMIN_FEE;
       }
-      return amount / calculateWeekly() + ADMIN_FEE;
+      return amount / calculateWeekly() + REGISTRATION_ADMIN_FEE;
     }
   };
 

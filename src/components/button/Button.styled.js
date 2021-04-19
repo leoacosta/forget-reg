@@ -55,7 +55,7 @@ export const StyledButton = styled.button`
   }
 
   &:focus {
-    outline: 0; // TODO fix for accessibility
+    outline: 0;
   }
 
   &.is-active {

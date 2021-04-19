@@ -1,21 +1,42 @@
 import styled from 'styled-components';
+import { BREAKPOINT, COLOR } from './utils/constants';
 
 export const StyledApp = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  padding: 1.5rem;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+`;
 
+export const StyledRow = styled.div`
+  margin-bottom: 4.375rem;
+  max-width: 500px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const StyledCalculator = styled.div`
+  /* placeholder... */
+`;
+
+export const StyledDatePicker = styled.div`
   .date-picker {
-    border: 1px solid #4baef7;
-    border-radius: 60px; /* move to constant */
-    background-color: #173146;
+    border: 1px solid ${COLOR.BLUEBERRY};
+    border-radius: 3.75rem;
+    background-color: ${COLOR.BIG_STONE};
     color: white;
     font-family: inherit;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
     width: 100%;
     padding: 1.25rem 2rem;
+
+    @media (min-width: ${BREAKPOINT.MD}) {
+      font-size: 1.25rem;
+    }
   }
 
   .react-datepicker-popper {
@@ -41,24 +62,6 @@ export const StyledApp = styled.main`
     width: 26px;
     margin-right: 0.625rem;
   }
-
-  input::-webkit-input-placeholder {
-    color: white;
-  }
-`;
-
-export const StyledRow = styled.div`
-  /* border: 2px solid green; */
-  margin-bottom: 4.375rem;
-  max-width: 500px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-export const StyledCalculator = styled.div`
-  /* min-width: 580px; */
 `;
 
 export const StyledResult = styled.div`
@@ -70,10 +73,14 @@ export const StyledResult = styled.div`
   align-items: center;
 
   p {
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 600;
     line-height: 1;
     margin: 0;
+
+    @media (min-width: ${BREAKPOINT.MD}) {
+      font-size: 3rem;
+    }
 
     &:before {
       content: '$';
@@ -92,12 +99,17 @@ export const StyledHeading3 = styled.h3`
 `;
 
 export const StyledLink = styled.a`
-  background-color: #4baef7;
+  background-color: ${COLOR.BLUEBERRY};
   border: none;
-  border-radius: 2rem; /* move to constant */
+  border-radius: 2rem;
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 1rem;
   text-decoration: none;
+
+  @media (min-width: ${BREAKPOINT.MD}) {
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+  }
 `;

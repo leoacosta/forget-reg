@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLOR } from '../../utils/constants';
 
 export const StyledSlider = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ export const StyledSlider = styled.div`
   }
 
   .rc-slider-rail {
-    background-color: #173146; /* move to constant */
+    background-color: ${COLOR.BIG_STONE};
   }
 
   .rc-slider-tooltip-inner {
@@ -31,16 +32,16 @@ export const StyledSliderToolTip = styled.div`
     left: 50%;
     margin-left: -8px;
     border-width: 10px 10px 0;
-    border-top-color: #4baef7;
+    border-top-color: ${COLOR.BLUEBERRY};
   }
 
   .rc-slider-tooltip-inner,
   .rc-slider-track {
-    background-color: #4baef7;
+    background-color: ${COLOR.BLUEBERRY};
   }
 
   .rc-slider-handle {
-    border: 4px solid #4baef7;
+    border: 4px solid ${COLOR.BLUEBERRY};
     height: 28px;
     margin-top: -8px;
     width: 28px;

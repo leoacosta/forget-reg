@@ -4,6 +4,7 @@ import {
   StyledApp,
   StyledRow,
   StyledCalculator,
+  StyledDatePicker,
   StyledHeading3,
   StyledLink,
   StyledResult,
@@ -121,14 +122,16 @@ const App = () => {
         </StyledRow>
         <StyledRow>
           <StyledHeading3>When is it due?</StyledHeading3>
-          <DatePicker
-            selected={dueDate}
-            onChange={(date) => setDueDate(date)}
-            placeholderText="Please select"
-            className="date-picker"
-            dateFormat="MMMM d, yyyy"
-            isClearable
-          />
+          <StyledDatePicker>
+            <DatePicker
+              selected={dueDate}
+              onChange={(date) => setDueDate(date)}
+              placeholderText="Please select"
+              className="date-picker"
+              dateFormat="MMMM d, yyyy"
+              isClearable
+            />
+          </StyledDatePicker>
         </StyledRow>
         <StyledRow>
           <StyledHeading3>How often would you pay?</StyledHeading3>

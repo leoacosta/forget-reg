@@ -1,22 +1,28 @@
 import styled from 'styled-components';
+import { BREAKPOINT, COLOR } from '../../utils/constants';
 
 export const StyledButtonGroup = styled.div`
-  background-color: #173146;
+  background-color: ${COLOR.BIG_STONE};
   border-radius: 1.875rem;
   display: flex;
   justify-content: space-between;
 `;
 
 export const StyledButton = styled.button`
-  background-color: #173146;
+  background-color: ${COLOR.BIG_STONE};
   border: none;
   border-radius: 1.875rem;
   color: #fff;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-family: 'Poppins', sans-serif;
-  padding: 1rem 2rem;
+  padding: 1rem;
   text-transform: capitalize;
+
+  @media (min-width: ${BREAKPOINT.MD}) {
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
+  }
 
   &:nth-child(2) {
     position: relative;
@@ -32,11 +38,19 @@ export const StyledButton = styled.button`
     }
 
     &:before {
-      left: -5px;
+      left: -10px;
+
+      @media (min-width: ${BREAKPOINT.MD}) {
+        left: -5px;
+      }
     }
 
     &:after {
-      right: -5px;
+      right: -10px;
+
+      @media (min-width: ${BREAKPOINT.MD}) {
+        right: -10px;
+      }
     }
   }
 
@@ -45,7 +59,7 @@ export const StyledButton = styled.button`
   }
 
   &.is-active {
-    background-color: #4baef7;
+    background-color: ${COLOR.BLUEBERRY};
     font-weight: 600;
     position: relative;
     z-index: 1;

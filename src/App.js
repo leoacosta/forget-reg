@@ -53,7 +53,7 @@ const App = () => {
   const calculateWeekly = () => calculateMonthlyDiff() * 4;
 
   /**
-   * Return result based on rego frequency
+   * Return result based on registraion frequency
    */
 
   const getFrequencyAmount = (callback) =>
@@ -64,24 +64,25 @@ const App = () => {
    * (i.e. month, fortnight, week)
    */
   const renderRegistrationCost = () => {
+    const value = 0;
+
+    if (
+      calculateMonthlyDiff() <= value ||
+      calculateFornight() <= value ||
+      calculateWeekly() <= value
+    ) {
+      return amount + REGISTRATION_ADMIN_FEE;
+    }
+
     if (paymentFrequency === 'monthly') {
-      if (calculateMonthlyDiff() <= 0) {
-        return amount + REGISTRATION_ADMIN_FEE;
-      }
       return getFrequencyAmount(calculateMonthlyDiff());
     }
 
     if (paymentFrequency === 'fortnightly') {
-      if (calculateFornight() <= 0) {
-        return amount + REGISTRATION_ADMIN_FEE;
-      }
       return getFrequencyAmount(calculateFornight());
     }
 
     if (paymentFrequency === 'weekly') {
-      if (calculateWeekly() <= 0) {
-        return amount + REGISTRATION_ADMIN_FEE;
-      }
       return getFrequencyAmount(calculateWeekly());
     }
   };

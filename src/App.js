@@ -53,7 +53,7 @@ const App = () => {
   const calculateWeekly = () => calculateMonthlyDiff() * 4;
 
   /**
-   * Return result based on registraion frequency
+   * Return result based on registration frequency
    */
 
   const getFrequencyAmount = (callback) =>

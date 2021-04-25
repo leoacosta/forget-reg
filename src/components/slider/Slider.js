@@ -23,7 +23,7 @@ const RangeSlider = ({ defaultValue, onChange }) => (
   <Slider
     min={0}
     max={1600}
-    step={0.01}
+    step={1}
     defaultValue={defaultValue}
     handle={handle}
     onChange={onChange}

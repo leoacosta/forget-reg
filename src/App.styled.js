@@ -12,10 +12,6 @@ export const StyledApp = styled.main`
 export const StyledRow = styled.div`
   margin-bottom: 4.375rem;
   max-width: 500px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;
 
 export const StyledCalculator = styled.div`

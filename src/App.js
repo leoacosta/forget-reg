@@ -65,9 +65,6 @@ const App = () => {
    */
   const renderRegistrationCost = () => {
     const value = 0;
-    const isMonthly = paymentFrequency === 'monthly';
-    const isFornightly = paymentFrequency === 'fortnightly';
-    const isWeekly = paymentFrequency === 'weekly';
 
     if (
       calculateMonthlyDiff() <= value ||
@@ -77,9 +74,16 @@ const App = () => {
       return amount + REGISTRATION_ADMIN_FEE;
     }
 
-    if (isMonthly) return getFrequencyAmount(calculateMonthlyDiff());
-    if (isFornightly) return getFrequencyAmount(calculateFornight());
-    if (isWeekly) return getFrequencyAmount(calculateWeekly());
+    switch (paymentFrequency) {
+      case 'monthly':
+        return getFrequencyAmount(calculateMonthlyDiff());
+      case 'fortnightly':
+        return getFrequencyAmount(calculateFornight());
+      case 'weekly':
+        return getFrequencyAmount(calculateWeekly());
+      default:
+        break;
+    }
   };
 
   return (

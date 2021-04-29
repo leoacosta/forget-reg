@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import {
   StyledApp,
   StyledRow,
+  StyledFlex,
   StyledCalculator,
   StyledDatePicker,
   StyledHeading3,
@@ -24,6 +25,7 @@ import {
 const App = () => {
   const [amount, setAmount] = useState(DEFAULT_REGISTRATION_AMOUNT);
   const [term, setTerm] = useState(DEFAULT_REGISTRATION_DURATION);
+  const [startDate, setStartDate] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [paymentFrequency, setPaymentFrequency] = useState(
     DEFAULT_PAYMENT_FREQUENCY
@@ -107,17 +109,30 @@ const App = () => {
           />
         </StyledRow>
         <StyledRow>
-          <StyledHeading3>When is it due?</StyledHeading3>
-          <StyledDatePicker>
-            <DatePicker
-              selected={dueDate}
-              onChange={(date) => setDueDate(date)}
-              placeholderText="Please select"
-              className="date-picker"
-              dateFormat="MMMM d, yyyy"
-              isClearable
-            />
-          </StyledDatePicker>
+          <StyledFlex>
+            <StyledDatePicker>
+              <StyledHeading3>Your preferred start date?</StyledHeading3>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                placeholderText="Please select"
+                className="date-picker"
+                dateFormat="MMMM d, yyyy"
+                isClearable
+              />
+            </StyledDatePicker>
+            <StyledDatePicker>
+              <StyledHeading3>When is it due?</StyledHeading3>
+              <DatePicker
+                selected={dueDate}
+                onChange={(date) => setDueDate(date)}
+                placeholderText="Please select"
+                className="date-picker"
+                dateFormat="MMMM d, yyyy"
+                isClearable
+              />
+            </StyledDatePicker>
+          </StyledFlex>
         </StyledRow>
         <StyledRow>
           <StyledHeading3>How often would you pay?</StyledHeading3>

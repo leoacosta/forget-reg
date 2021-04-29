@@ -11,7 +11,11 @@ export const StyledApp = styled.main`
 
 export const StyledRow = styled.div`
   margin-bottom: 4.375rem;
-  max-width: 500px;
+  max-width: 530px;
+`;
+
+export const StyledFlex = styled.div`
+  display: flex;
 `;
 
 export const StyledCalculator = styled.div`
@@ -19,6 +23,14 @@ export const StyledCalculator = styled.div`
 `;
 
 export const StyledDatePicker = styled.div`
+  &:first-child {
+    margin-right: 1rem;
+  }
+
+  &:last-child {
+    margin-left: 1rem;
+  }
+
   .date-picker {
     border: 1px solid ${COLOR.BLUEBERRY};
     border-radius: 3.75rem;

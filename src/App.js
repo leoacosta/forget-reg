@@ -41,14 +41,17 @@ const App = () => {
 
   /**
    * Calculate how many months exist between
-   * present and selected future date
+   * preferred start and due date with 21 day offset (i.e. 3 weeks)
    */
 
   const calculateMonthlyDiff = () => {
-    const today = new Date();
-    const timeDiff = new Date(dueDate) - today;
+    const OFFSET_IN_DAYS = 21;
+    const getMillisecondsOffset =
+      new Date(dueDate) - 24 * 60 * 60 * 1000 * OFFSET_IN_DAYS;
+    const timeDiff = new Date(getMillisecondsOffset) - new Date(startDate);
     const monthlyDiff = timeDiff / (1000 * 60 * 60 * 24);
-    return Math.floor(monthlyDiff / 30);
+
+    return Math.ceil(monthlyDiff / 30);
   };
 
   const calculateFornight = () => calculateMonthlyDiff() * 2;
@@ -58,8 +61,7 @@ const App = () => {
    * Return result based on registration frequency
    */
 
-  const getFrequencyAmount = (callback) =>
-    amount / callback + REGISTRATION_ADMIN_FEE;
+  const getFrequencyAmount = (callback, fee) => amount / callback + fee;
 
   /**
    * Render payment frequency result
@@ -68,21 +70,36 @@ const App = () => {
   const renderRegistrationCost = () => {
     const value = 0;
 
+    // date range does not exceed a minimum of 1 month
     if (
       calculateMonthlyDiff() <= value ||
       calculateFornight() <= value ||
       calculateWeekly() <= value
     ) {
-      return amount + REGISTRATION_ADMIN_FEE;
+      return amount + REGISTRATION_ADMIN_FEE.MONTHLY;
+    }
+
+    // start date must exist to trigger output
+    if (!startDate) {
+      return 0;
     }
 
     switch (paymentFrequency) {
       case 'monthly':
-        return getFrequencyAmount(calculateMonthlyDiff());
+        return getFrequencyAmount(
+          calculateMonthlyDiff(),
+          REGISTRATION_ADMIN_FEE.MONTHLY
+        );
       case 'fortnightly':
-        return getFrequencyAmount(calculateFornight());
+        return getFrequencyAmount(
+          calculateFornight(),
+          REGISTRATION_ADMIN_FEE.FORNIGHTLY
+        );
       case 'weekly':
-        return getFrequencyAmount(calculateWeekly());
+        return getFrequencyAmount(
+          calculateWeekly(),
+          REGISTRATION_ADMIN_FEE.WEEKLY
+        );
       default:
         break;
     }

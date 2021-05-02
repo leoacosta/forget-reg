@@ -14,6 +14,7 @@ export const StyledButton = styled.button`
   border-radius: 1.875rem;
   color: #fff;
   cursor: pointer;
+  flex: 1 1 auto;
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   padding: 1rem;

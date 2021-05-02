@@ -15,7 +15,9 @@ export const StyledRow = styled.div`
 `;
 
 export const StyledFlex = styled.div`
-  display: flex;
+  @media (min-width: ${BREAKPOINT.MD}) {
+    display: flex;
+  }
 `;
 
 export const StyledCalculator = styled.div`
@@ -23,12 +25,18 @@ export const StyledCalculator = styled.div`
 `;
 
 export const StyledDatePicker = styled.div`
-  &:first-child {
-    margin-right: 1rem;
-  }
+  margin-bottom: 2.375rem;
 
-  &:last-child {
-    margin-left: 1rem;
+  @media (min-width: ${BREAKPOINT.MD}) {
+    margin-bottom: 0;
+
+    &:first-child {
+      margin-right: 1rem;
+    }
+
+    &:last-child {
+      margin-left: 1rem;
+    }
   }
 
   .date-picker {
@@ -41,10 +49,6 @@ export const StyledDatePicker = styled.div`
     font-weight: 600;
     width: 100%;
     padding: 1.25rem 2rem;
-
-    @media (min-width: ${BREAKPOINT.MD}) {
-      font-size: 1.25rem;
-    }
   }
 
   .react-datepicker-popper {

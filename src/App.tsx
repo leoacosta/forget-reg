@@ -34,7 +34,7 @@ const App = () => {
     REGISTRATION_FREQUENCY[0].suffix
   );
 
-  const handlePaymentFrequencyOnClick = (event, suffix) => {
+  const handlePaymentFrequencyOnClick = (event: any, suffix: string) => {
     setPaymentSuffix(suffix);
     setPaymentFrequency(event.currentTarget.value);
   };
@@ -47,8 +47,9 @@ const App = () => {
   const calculateMonthlyDiff = () => {
     const OFFSET_IN_DAYS = 21;
     const getMillisecondsOffset =
-      new Date(dueDate) - 24 * 60 * 60 * 1000 * OFFSET_IN_DAYS;
-    const timeDiff = new Date(getMillisecondsOffset) - new Date(startDate);
+      new Date(dueDate).valueOf() - 24 * 60 * 60 * 1000 * OFFSET_IN_DAYS;
+    const timeDiff =
+      new Date(getMillisecondsOffset).valueOf() - new Date(startDate).valueOf();
     const monthlyDiff = timeDiff / (1000 * 60 * 60 * 24);
 
     return Math.ceil(monthlyDiff / 30);
@@ -61,7 +62,8 @@ const App = () => {
    * Return result based on registration frequency
    */
 
-  const getFrequencyAmount = (callback, fee) => amount / callback + fee;
+  const getFrequencyAmount = (callback: any, fee: number) =>
+    amount / callback + fee;
 
   /**
    * Render payment frequency result
@@ -114,14 +116,14 @@ const App = () => {
           </StyledHeading3>
           <RangeSlider
             defaultValue={DEFAULT_REGISTRATION_AMOUNT}
-            onChange={(value) => setAmount(value)}
+            onChange={(value: any) => setAmount(value)}
           />
         </StyledRow>
         <StyledRow>
           <StyledHeading3>How long is this regristration?</StyledHeading3>
           <Button
             data={REGISTRATION_TERM}
-            handleOnClick={(event) => setTerm(event.currentTarget.value)}
+            handleOnClick={(event: any) => setTerm(event.currentTarget.value)}
             defaultValue={term}
           />
         </StyledRow>
@@ -130,8 +132,9 @@ const App = () => {
             <StyledDatePicker>
               <StyledHeading3>Your preferred start date?</StyledHeading3>
               <DatePicker
+                // @ts-ignore
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                onChange={(date: any) => setStartDate(date)}
                 placeholderText="Please select"
                 className="date-picker"
                 dateFormat="MMMM d, yyyy"
@@ -141,8 +144,9 @@ const App = () => {
             <StyledDatePicker>
               <StyledHeading3>When is it due?</StyledHeading3>
               <DatePicker
+                // @ts-ignore
                 selected={dueDate}
-                onChange={(date) => setDueDate(date)}
+                onChange={(date: any) => setDueDate(date)}
                 placeholderText="Please select"
                 className="date-picker"
                 dateFormat="MMMM d, yyyy"
@@ -165,9 +169,7 @@ const App = () => {
           </StyledHeading3>
           <StyledResult>
             <p>
-              {dueDate
-                ? `${renderRegistrationCost().toFixed(2)}`
-                : (0).toFixed(2)}
+              {dueDate ? `${renderRegistrationCost()}` : (0).toFixed(2)}
               <span>{paymentSuffix}</span>
             </p>
             <StyledLink href="#0">Apply Now</StyledLink>

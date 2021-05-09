@@ -1,9 +1,8 @@
-/* eslint-disable react/prop-types */
 import { StyledButtonGroup, StyledButton } from './Button.styled';
 
-const Button = ({ data, handleOnClick, defaultValue }) => (
+const Button = ({ data, handleOnClick, defaultValue }: any) => (
   <StyledButtonGroup>
-    {data.map((el, index) => {
+    {data.map((el: any, index: number) => {
       const { label, suffix } = el;
       return (
         <StyledButton

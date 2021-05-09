@@ -169,7 +169,10 @@ const App = () => {
           </StyledHeading3>
           <StyledResult>
             <p>
-              {dueDate ? `${renderRegistrationCost()}` : (0).toFixed(2)}
+              {dueDate
+                ? // @ts-ignore
+                  `${renderRegistrationCost().toFixed(2)}`
+                : (0).toFixed(2)}
               <span>{paymentSuffix}</span>
             </p>
             <StyledLink href="#0">Apply Now</StyledLink>

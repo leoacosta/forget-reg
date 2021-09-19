@@ -1,6 +1,6 @@
 # Forget Reg
 
-This project is the standalone React based calculator for the Forget Reg project.
+This project is the standalone React based repayment calculator for the Forget Reg project.
 
 ## Available Scripts
 

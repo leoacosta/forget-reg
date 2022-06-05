@@ -2,6 +2,8 @@
 
 This project is the standalone React based repayment calculator for the Forget Reg project.
 
+If you'd like to check out the demo then just click over [here](https://forget-reg.netlify.app/) 👈
+
 ## Available Scripts
 
 In the project directory, you can run:
